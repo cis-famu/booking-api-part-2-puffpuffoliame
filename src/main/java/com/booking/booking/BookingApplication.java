@@ -2,7 +2,7 @@ package com.booking.booking;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
+//hello
 @SpringBootApplication
 public class BookingApplication {
 
