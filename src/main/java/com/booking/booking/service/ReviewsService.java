@@ -47,4 +47,5 @@ public class ReviewsService {
         DocumentSnapshot document = future.get();
         return documentSnapshotToReview(document);
     }
+
 }

@@ -69,6 +69,7 @@ public class HotelsService {
         if(hotelsDoc != null)
             hotelsDoc.update(formattedValues);
     }
+
 }
 
 

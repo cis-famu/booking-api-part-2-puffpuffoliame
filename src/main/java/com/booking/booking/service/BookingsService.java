@@ -1,10 +1,7 @@
 package com.booking.booking.service;
 import com.booking.booking.model.Bookings;
 import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.CollectionReference;
-import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.Firestore;
-import com.google.cloud.firestore.QuerySnapshot;
+import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +16,7 @@ public class BookingsService {
 
     }
 
-    private Bookings documentSnapshotToPassenger(DocumentSnapshot document)
+    private Bookings documentSnapshotToBookings(DocumentSnapshot document)
     {
         Bookings passenger = null;
         if(document.exists()) {
@@ -34,7 +31,7 @@ public class BookingsService {
         ArrayList<Bookings> bookingsList = new ArrayList<>();
 
         for(DocumentSnapshot document: future.get().getDocuments()){
-            Bookings bookings = documentSnapshotToPassenger(document);
+            Bookings bookings = documentSnapshotToBookings(document);
             if(bookings != null)
                 bookingsList.add(bookings);
         }
@@ -46,6 +43,7 @@ public class BookingsService {
         CollectionReference bookingsCollection = firestore.collection("Bookings");
         ApiFuture<DocumentSnapshot> future = bookingsCollection.document(bookingID).get();
         DocumentSnapshot document = future.get();
-        return documentSnapshotToPassenger(document);
+        return documentSnapshotToBookings(document);
     }
+
 }

@@ -1,12 +1,10 @@
 package com.booking.booking.service;
+
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.*;
+import com.google.firebase.cloud.FirestoreClient;
 import com.booking.booking.model.Users;
 import com.booking.booking.model.paymentInformation;
-import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.CollectionReference;
-import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.Firestore;
-import com.google.cloud.firestore.QuerySnapshot;
-import com.google.firebase.cloud.FirestoreClient;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,7 +18,7 @@ public class UsersService {
 
     }
 
-    private Users documentSnapshotToRoom(DocumentSnapshot document)
+    private Users documentSnapshotToUsers(DocumentSnapshot document)
     {
         Users user = null;
         if(document.exists())
@@ -31,21 +29,41 @@ public class UsersService {
         CollectionReference usersCollection = firestore.collection("Users");
         ApiFuture<QuerySnapshot> future = usersCollection.get();
 
-        ArrayList<Users> bookingsList = new ArrayList<>();
+        ArrayList<Users> userssList = new ArrayList<>();
 
         for(DocumentSnapshot document: future.get().getDocuments()){
-            Users users = documentSnapshotToRoom(document);
+            Users users = documentSnapshotToUsers(document);
             if(users != null)
-                bookingsList.add(users);
+                userssList.add(users);
         }
-        return bookingsList;
+        return userssList;
 
     }
 
     public Users getUsersById(String userID) throws ExecutionException, InterruptedException {
-        CollectionReference bookingsCollection = firestore.collection("Users");
-        ApiFuture<DocumentSnapshot> future = bookingsCollection.document(userID).get();
+        CollectionReference userssCollection = firestore.collection("Users");
+        ApiFuture<DocumentSnapshot> future = userssCollection.document(userID).get();
         DocumentSnapshot document = future.get();
-        return documentSnapshotToRoom(document);
+        return documentSnapshotToUsers(document);
+    }
+    public ArrayList<Users> getUserssBycreatedAtAndSort(String createdAt) throws ExecutionException, InterruptedException {
+        ArrayList<Users> userss = null;
+
+        DocumentReference flightRef = firestore.collection("Users").document(createdAt);
+
+        CollectionReference usersCollection = firestore.collection("Users");
+        Query query = usersCollection.whereEqualTo("createdAt", flightRef)
+                .orderBy("createdAt", Query.Direction.DESCENDING);
+
+        ApiFuture<QuerySnapshot> future = query.get();
+
+        for(QueryDocumentSnapshot document :  future.get().getDocuments())
+        {
+            Users users = documentSnapshotToUsers(document);
+            if(users != null)
+                userss.add(users);
+
+        }
+        return userss;
     }
 }

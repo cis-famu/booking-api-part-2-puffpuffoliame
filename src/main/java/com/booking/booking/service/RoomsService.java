@@ -47,4 +47,5 @@ public class RoomsService {
         DocumentSnapshot document = future.get();
         return documentSnapshotToRoom(document);
     }
+
 }
