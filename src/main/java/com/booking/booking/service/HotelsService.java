@@ -19,9 +19,11 @@ public class HotelsService {
     private Hotels documentSnapshotToHotel(DocumentSnapshot document)
     {
         Hotels hotel = null;
-        if(document.exists())
-            hotel = new Hotels(document.getId(), document.getString("name"), document.getString("description"), document.getLong("rating"), document.getString("address"), document.getString("contactInformation"), (String[]) document.get("amenities"));
-        return hotel;
+        if(document.exists()){
+            ArrayList<String> amenities = (ArrayList<String>) document.get("amenities");
+            hotel = new Hotels(document.getId(), document.getString("name"), document.getString("description"), document.getLong("rating"), document.getString("address"), document.getString("contactInformation"),amenities,document.getTimestamp("createdAt"));{
+            return hotel;
+            }
     }
     public ArrayList<Hotels> getAllHotels()throws ExecutionException, InterruptedException {
         CollectionReference hotelsCollection = firestore.collection("Hotels");

@@ -19,7 +19,7 @@ public class HotelsController {
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponse> getAllHotelss(){
+    public ResponseEntity<ApiResponse> getAllHotels(){
         try{
             return ResponseEntity.ok(new ApiResponse(true, "Success", hotelsService.getAllHotels(), null));
         }
@@ -27,7 +27,7 @@ public class HotelsController {
             return ResponseEntity.status(500).body(new ApiResponse(false,"An error occurred.", null, e.getMessage()));
         }
     }
-    @GetMapping("/{hotelsId}")
+    @GetMapping("/{hotelId}")
     public ResponseEntity<ApiResponse> getHotelsbyId(@PathVariable String hotelsId){
         try{
             return ResponseEntity.ok(new ApiResponse(true, "Success", hotelsService.getHotelsById(hotelsId), null));

@@ -22,7 +22,7 @@ public class UsersService {
     {
         Users user = null;
         if(document.exists())
-            user = new Users(document.getId(), document.getString("name"), document.getString("email"), document.getString("phone"), document.getString("address"),(paymentInformation) document.get("pay"));
+            user = new Users(document.getId(), document.getString("name"), document.getString("email"), document.getString("phone"), document.getString("address"),(paymentInformation) document.get("pay"),document.getTimestamp("createdAt"));
         return user;
     }
     public ArrayList<Users> getAllUsers()throws ExecutionException, InterruptedException {

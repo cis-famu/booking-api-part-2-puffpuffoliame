@@ -23,7 +23,7 @@ public class RoomsService {
     {
         Rooms room = null;
         if(document.exists())
-            room = new Rooms(document.getId(), document.getString("hotelID"), document.getString("roomType"), document.getLong("price"),document.getLong("capacity"), document.getString("description"), document.getString("availability"),(String[])document.get("images"));
+            room = new Rooms(document.getId(), document.getString("hotelID"), document.getString("roomType"), document.getLong("price"),document.getLong("capacity"), document.getString("description"), document.getString("availability"),(String[])document.get("images"),document.getTimestamp("createdAt"));
         return room;
     }
     public ArrayList<Rooms> getAllRooms()throws ExecutionException, InterruptedException {

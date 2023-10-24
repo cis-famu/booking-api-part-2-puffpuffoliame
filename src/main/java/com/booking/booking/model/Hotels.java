@@ -1,10 +1,12 @@
 package com.booking.booking.model;
 import com.google.cloud.Timestamp;
+import com.google.cloud.firestore.annotation.DocumentId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 
 
 @Data
@@ -12,11 +14,15 @@ import javax.annotation.Nullable;
 @AllArgsConstructor
 
 public class Hotels {
-    String hotelID;
+    @DocumentId
+    @Nullable String hotelID;
     String name;
     String description;
     long rating;
     String address;
     String contactInformation;
-    String[] amenities;
+    ArrayList<String> amenities;
+    Timestamp createdAt;
+
+
 }

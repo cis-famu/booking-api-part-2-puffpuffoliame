@@ -1,6 +1,7 @@
 package com.booking.booking.model;
 
 import com.google.cloud.Timestamp;
+import com.google.cloud.firestore.annotation.DocumentId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,7 +12,9 @@ import javax.annotation.Nullable;
 @Data
 @NoArgsConstructor
 
-public class Bookings {String	bookingID;
+public class Bookings {
+
+    @Nullable String	bookingID;
     String userID;
     Timestamp checkInDate ;
     Timestamp checkOutDate;
