@@ -2,11 +2,13 @@ package com.booking.booking.model;
 
 import com.google.cloud.Timestamp;
 import com.google.cloud.firestore.annotation.DocumentId;
+import com.google.protobuf.util.Timestamps;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.annotation.Nullable;
+import java.text.ParseException;
 
 @Data
 @AllArgsConstructor
@@ -22,6 +24,11 @@ public class Rooms {
     private String	description;
     private String	availability;
     private String[] images;
-    Timestamp createdAt;
+    private Timestamp createdAt;
 
+
+    public void setCreatedAt(String createdAt) throws ParseException {
+        this.createdAt = Timestamp.fromProto(Timestamps.parse(createdAt));
+    }
 }
+

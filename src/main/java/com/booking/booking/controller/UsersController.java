@@ -1,15 +1,11 @@
 package com.booking.booking.controller;
-import com.booking.booking.model.Users;
 import com.booking.booking.service.UsersService;
 import com.booking.booking.util.ApiResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
-import java.util.concurrent.ExecutionException;
-
 @RestController
-@RequestMapping("/{users}")
+@RequestMapping("users")
 
 public class UsersController {
     private UsersService usersService;
@@ -19,7 +15,7 @@ public class UsersController {
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponse> getAllUserss(){
+    public ResponseEntity<ApiResponse> getAllUsers(){
         try{
             return ResponseEntity.ok(new ApiResponse(true, "Success", usersService.getAllUsers(), null));
         }

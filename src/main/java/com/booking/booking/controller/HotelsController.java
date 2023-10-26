@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 @RestController
-@RequestMapping("/{hotels}")
+@RequestMapping("hotels")
  
 public class HotelsController {
     private HotelsService hotelsService;

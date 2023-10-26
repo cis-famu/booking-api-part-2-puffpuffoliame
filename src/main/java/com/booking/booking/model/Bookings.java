@@ -14,13 +14,15 @@ import javax.annotation.Nullable;
 
 public class Bookings {
 
-    @Nullable String	bookingID;
-    String userID;
-    Timestamp checkInDate ;
-    Timestamp checkOutDate;
-    long totalPrice;
-    String status;
-    String paymentStatus;
+    private @Nullable String	bookingID;
+    private String userID;
+    private Timestamp checkInDate ;
+    private Timestamp checkOutDate;
+    private long totalPrice;
+    private String status;
+    private String paymentStatus;
+    private @Nullable Timestamp createdAt;
+
 
     public Bookings(String bd, String ud, Timestamp ci, Timestamp co,long tp, String s, String ps){
         bookingID = bd;
@@ -31,5 +33,6 @@ public class Bookings {
         status = s;
         paymentStatus = ps;
     }
+
 
 }
