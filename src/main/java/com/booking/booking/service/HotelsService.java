@@ -1,8 +1,10 @@
 package com.booking.booking.service;
 import com.booking.booking.model.Hotels;
+import com.booking.booking.util.ApiResponse;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -71,6 +73,15 @@ public class HotelsService {
         DocumentReference hotelsDoc = firestore.collection("Hotels").document(id);
         if(hotelsDoc != null)
             hotelsDoc.update(formattedValues);
+    }
+    public void deleteHotel(String roomID) throws ExecutionException, InterruptedException {
+        CollectionReference hotelsCollection = firestore.collection("Users");
+        ApiFuture<DocumentSnapshot> future = hotelsCollection.document(roomID).get();
+        DocumentSnapshot document = future.get();
+        if (document.getId().equals(roomID)) {
+            hotelsCollection.document(roomID).delete();
+        }
+
     }
 
 }

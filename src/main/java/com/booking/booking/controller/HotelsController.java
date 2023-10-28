@@ -56,6 +56,16 @@ public class HotelsController {
             return ResponseEntity.status(500).body(new ApiResponse(false, "An error occurred", null, e.getMessage()));
         }
     }
+    @DeleteMapping("/{roomID}")
+    public ResponseEntity<ApiResponse> deleteHotel(@PathVariable String roomID){
+        try{
+            hotelsService.deleteHotel(roomID);
+            return ResponseEntity.ok(new ApiResponse(true,"Update Success",null,null));
+        } catch (Exception e){
+            return ResponseEntity.status(500).body(new ApiResponse(false, "An error occurred", null, e.getMessage()));
+        }
+
+    }
 
 
 }
