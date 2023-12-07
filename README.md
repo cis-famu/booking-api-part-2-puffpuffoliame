@@ -2,7 +2,8 @@
 ### List of network requests
 
 **Hotels**
-
+|Action|Network|Description| 
+|---|---|---| 
 |`GET`|`http://localhost:8080/users`| Retrieves all products / Get all hotels | 
 |`GET`|`http://localhost:8080/users/{id}`| Retrieves a specific product based on it's ID /  Get hotel by id|
 |`POST`|`http://localhost:8080/users`| Creates a new product|
@@ -21,6 +22,8 @@
 |`DELETE`|`http://localhost:8080/rooms/{id}`| Deletes a product based on it's ID / Delete existing room|
 
 **Users**
+|Action|Network|Description| 
+|---|---|---| 
 |`GET`|`http://localhost:8080/users`| Retrieves all products| 
 |`GET`|`http://localhost:8080/users/{id}`| Retrieves a specific product based on it's ID|
 |`POST`|`http://localhost:8080/users`| Creates a new product|
